@@ -4,63 +4,6 @@ import { TailSpin } from "react-loader-spinner";
 import config from '../config/configg';
 const BACKEND_URL=config.BACKEND_URL;
 const Portfolio = () => {
-    const [type,setType]=useState(1);
-    const [portfolioData,setPortfolioData]=useState([]);
-    const [mainLoader,setMainLoader]=useState(false);
-    const [allServices,setAllServices]=useState();
-    const [filter,setFilter]=useState('All');
-    useEffect(() => {
-      getServices();
-      fetchAllPortfolioData();
-    }, [filter])
-    
-    const getServices=async()=>{
-      setMainLoader(true);
-      // console.log(search, "search mai hai kya?");
-      const response = await fetch(`${BACKEND_URL}/admin/getServices`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "authorization": localStorage.getItem("token"),
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        // body: JSON.stringify({
-          
-        // }),
-      });
-      const jsonnn = await response.json();
-      console.log(jsonnn.data.list, "console the ServicesData");
-      setAllServices(jsonnn.data.list);
-      // setServicesDataDataUnAltered(jsonnn.data.list);
-      // setPages(
-      //   parseInt(jsonnn.data.count % sizePerPage) == 0
-      //     ? parseInt(jsonnn.data.count / sizePerPage)
-      //     : parseInt(jsonnn.data.count / sizePerPage + 1)
-      // );
-      setMainLoader(false);
-  
-  
-    }
-   
-    const fetchAllPortfolioData = async () => {
-      setMainLoader(true);
-      const response = await fetch(
-        `${BACKEND_URL}/admin/getPortfolioData`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            'authorization':localStorage.getItem('token')
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }
-      );
-      const jsonnn = await response.json();
-      console.log(jsonnn,'satyamtomar');
-      setPortfolioData(jsonnn.data.list);
-      setMainLoader(false);
-      console.log("all my portfolio datas are", jsonnn.data);
-    };
    
   return (
     <>
